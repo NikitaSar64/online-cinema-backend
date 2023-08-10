@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { DataBaseService } from 'src/database/database.service';
+import { DataBaseService } from '../database/database.service';
 import { CreateGenreDto } from './dto/create-genre.dto';
 
 @Injectable()
