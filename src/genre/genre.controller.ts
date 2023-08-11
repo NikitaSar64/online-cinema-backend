@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Header, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { GenreService } from './genre.service';
 import { CreateGenreDto } from './dto/create-genre.dto';
 
@@ -7,7 +7,6 @@ export class GenreController {
   constructor(private readonly genreService: GenreService) {}
 
   @Get()
-  @Header('Access-Control-Allow-Origin', '*')
   async getAllGenres() {
     return this.genreService.getAllGenres();
   }
