@@ -11,10 +11,35 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") 
 }
 
-model Genres{
-  id          Int     @default(autoincrement()) @id
+model Genres {
+  id          Int         @id @default(autoincrement())
   name        String
-  slug        String  @unique
+  slug        String      @unique
   description String
   icon        String
+  movies      FilmGenre[]
 }
+
+model Movies {
+  id          Int         @id @default(autoincrement())
+  poster      String
+  bigPoster   String
+  year        Int
+  duration    String
+  country     String
+  description String
+  slug        String      @unique
+  name        String      @unique
+  genres      FilmGenre[]
+}
+
+model FilmGenre {
+  id      Int    @id @default(autoincrement())
+  filmId  Int
+  genreId Int
+  film    Movies @relation(fields: [filmId], references: [id])
+  genre   Genres @relation(fields: [genreId], references: [id])
+
+  @@unique([filmId, genreId])
+}
+
