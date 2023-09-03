@@ -30,6 +30,7 @@ model Movies {
   description String
   slug        String      @unique
   name        String      @unique
+  rating      Int?
   genres      FilmGenre[]
 }
 

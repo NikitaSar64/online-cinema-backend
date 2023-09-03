@@ -36,4 +36,36 @@ export class MovieService {
 
     return movies;
   }
+
+  async updateMovieRating(id: number, rating: number) {
+    await this.dataBaseServices.movies.update({
+      where: {
+        id: +id,
+      },
+      data: {
+        rating,
+      },
+    });
+  }
+
+  async getMovie(id: number) {
+    const movie = await this.dataBaseServices.movies.findFirst({
+      where: {
+        id: +id,
+      },
+    });
+
+    return movie;
+  }
+
+  async getMostPopularMovie() {
+    const movie = await this.dataBaseServices.movies.findMany({
+      orderBy: {
+        rating: 'desc',
+      },
+      take: 3,
+    });
+
+    return movie;
+  }
 }
