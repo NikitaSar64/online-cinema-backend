@@ -64,6 +64,17 @@ export class MovieService {
         rating: 'desc',
       },
       take: 3,
+      include: {
+        genres: {
+          select: {
+            genre: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     return movie;
